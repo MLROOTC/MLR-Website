@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Players{% endblock %}
+
+{% block content %}
+<br>
+<h1>Players</h1>
+<hr>
+<table align="center" class="table table-striped table-hover" style="overflow: auto">
+    <tr>
+        <th style="width:5%;">ID</th>
+        <th style="width:40%;">Name</th>
+        <th style="width:10%;">Team</th>
+        <th style="width:20%;" colspan="3">Positions</th>
+        <th style="width:10%;">Hand</th>
+        <th style="width:10%;">Batting Type</th>
+        <th style="width:10%;">Pitching Type</th>
+        <th style="width:10%;">Hand Bonus</th>
+    </tr>
+    {% for p in players %}
+    <tr>
+        <td>{{p.playerID}}</td>
+        <td><a href="/player/{{p.playerID}}">{{p.playerName}}</a></td>
+        <td><a href="/team/{{p.Team}}">{{p.Team}}</a></td>
+        <td>{{p.priPos}}</td>
+        <td>{{p.secPos}}</td>
+        <td>{{p.tertPos}}</td>
+        <td>{{p.hand}}</td>
+        <td>{{p.batType}}</td>
+        <td>{{p.pitchType}}</td>
+        <td>{{p.pitchBonus}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

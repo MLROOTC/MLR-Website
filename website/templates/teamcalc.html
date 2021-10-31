@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title %}Calculator{% endblock %}
+
+{% block content %}
+<br>
+<h1>Range Finder</h1>
+<hr>
+
+<form method="post">
+    <div class="row">
+        <div class="col">
+            <label for="pitcher">Pitcher</label>
+            <select id="pitcher" class="custom-select" name="pitcher">
+                <option value="" selected>Select Pitcher...</option>
+                {% for player in players %}
+                <option value="{{player.playerID}}">{{player.playerName}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col">
+            <label for="team">Team</label>
+            <select id="team" class="custom-select" name="team">
+                <option value="" selected>Select Team...</option>
+                {% for team in teams %}
+                <option value="{{team.abb}}">{{team.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col">
+            <label for="park">Team</label>
+            <select id="park" class="custom-select" name="park">
+                <option value="" selected>Select Park...</option>
+                {% for park in parks %}
+                <option value="{{park.team}}">{{park.team}} - {{park.parkName}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <br>
+    </div>
+    <br>
+    <input type="submit" class="btn btn-primary" value="Submit" style="float: right">
+    <br><br>
+</form>
+
+{% if title %}
+<hr>
+<div class="row">
+    <div class="col">
+        <h2 style="text-align: center">{{title}}</h2>
+        <h4 style="text-align: center">{{subtitle}}</h4>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col">
+        <table align="center" class="table table-striped table-hover">
+            <tr align="center">
+                <th>Player</th>
+                <th colspan="3">Positions</th>
+                <th>Batting Type</th>
+                <th>Hand</th>
+                <th>HR</th>
+                <th>3B</th>
+                <th>2B</th>
+                <th>1B</th>
+                <th>BB</th>
+                <th>FO</th>
+                <th>K</th>
+                <th>PO</th>
+                <th>RGO</th>
+                <th>LGO</th>
+            </tr>
+            {% for data in roster_ranges %}
+            <tr>
+                <td><b><a href="/player/{{data[0]}}">{{data[1]}}</a></b></td>
+                <td align="center">{{data[2]}}</td>
+                <td align="center">{{data[3]}}</td>
+                <td align="center">{{data[4]}}</td>
+                <td align="center">{{data[5]}}</td>
+                <td align="center">{{data[6]}}</td>
+                <td align="center">{{data[7]}}</td>
+                <td align="center">{{data[8]}}</td>
+                <td align="center">{{data[9]}}</td>
+                <td align="center">{{data[10]}}</td>
+                <td align="center">{{data[11]}}</td>
+                <td align="center">{{data[12]}}</td>
+                <td align="center">{{data[13]}}</td>
+                <td align="center">{{data[14]}}</td>
+                <td align="center">{{data[15]}}</td>
+                <td align="center">{{data[16]}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock %}

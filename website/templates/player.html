@@ -1,0 +1,376 @@
+{% extends "base.html" %}
+{% block title %}Player{% endblock %}
+
+{% block content %}
+<br>
+<div class="container">
+    <div class="row" style="display:flex; align-items:center;" >
+        <div class="col">
+            {% if team %}
+                <h1><a href="/team/{{team.abb}}"><img src={{team.logo_url}} alt={{team.abb}} style="height: 100px;"/></a>   <a href="https://www.reddit.com{{player.redditName}}">{{player.playerName}}</a></h1>
+            {% else %}
+                <h1><img src="https://cdn.discordapp.com/attachments/583735640177246222/892826404520071238/baseball_snoo.png" style="height: 100px;"/>   <a href="https://www.reddit.com{{player.redditName}}">{{player.playerName}}</a></h1>
+            {% endif %}
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <h4>Hand</h4><h6>{{player.hand}}</h6>
+        </div>
+        <div class="col">
+            <h4>Batting Type</h4><h6>{{bt.name}}</h6>
+        </div>
+        <div class="col">
+            <h4>Pitching Type</h4><h6>{{pt.name}}</h6>
+        </div>
+        <div class="col">
+            <h4>Hand Bonus</h4><h6>{{pb.name}}</h6>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h4>Primary Position</h4><h6>{{player.priPos}}</h6>
+        </div>
+        <div class="col">
+            <h4>Secondary Position</h4><h6>{{player.secPos}}</h6>
+        </div>
+        <div class="col">
+            <h4>Tertiary Position</h4><h6>{{player.tertPos}}</h6>
+        </div>
+        <div class="col">
+            <h4>Player ID</h4><h6>{{player.playerID}}</h6>
+        </div>
+    </div>
+</div>
+<hr>
+<br>
+<h3>Season Stats</h3>
+<hr>
+<h4>MLR Stats</h4>
+{% if mlr_batting_stats %}
+<table align="center" class="table table-striped table-hover">
+    <tr>
+        <th>Season</th>
+        <th>PAs</th>
+        <th>AVG</th>
+        <th>OBP</th>
+        <th>SLG</th>
+        <th>OPS</th>
+        <th>Hits</th>
+        <th>HRs</th>
+        <th>Runs</th>
+        <th>RBIs</th>
+        <th>Steals</th>
+        <th>Attempts</th>
+        <th>DPA</th>
+    </tr>
+    {% for stats in mlr_batting_stats %}
+    <tr>
+        <td>{{stats['season']}}</td>
+        <td>{{stats['pa']}}</td>
+        <td>{{stats['avg']}}</td>
+        <td>{{stats['obp']}}</td>
+        <td>{{stats['slg']}}</td>
+        <td>{{stats['ops']}}</td>
+        <td>{{stats['hits']}}</td>
+        <td>{{stats['hrs']}}</td>
+        <td>{{stats['runs']}}</td>
+        <td>{{stats['rbi']}}</td>
+        <td>{{stats['sb']}}</td>
+        <td>{{stats['sa']}}</td>
+        <td>{{stats['dpa']}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+<br>
+{% if mlr_pitching_stats %}
+<table align="center" class="table table-striped table-hover">
+    <tr>
+        <th>Season</th>
+        <th>IP</th>
+        <th>ERA</th>
+        <th>WHIP</th>
+        <th>Hits</th>
+        <th>Runs</th>
+        <th>FOs</th>
+        <th>Ks</th>
+        <th>DP</th>
+        <th>DP %</th>
+        <th>CS</th>
+        <th>CS %</th>
+        <th>DBF</th>
+    </tr>
+    {% for stats in mlr_pitching_stats %}
+    <tr>
+        <td>{{stats['season']}}</td>
+        <td>{{stats['ip']}}</td>
+        <td>{{stats['era']}}</td>
+        <td>{{stats['whip']}}</td>
+        <td>{{stats['hits']}}</td>
+        <td>{{stats['runs']}}</td>
+        <td>{{stats['flyouts']}}</td>
+        <td>{{stats['strikeouts']}}</td>
+        <td>{{stats['dp']}}</td>
+        <td>{{stats['dp_pct']}}%</td>
+        <td>{{stats['cs']}}</td>
+        <td>{{stats['cs_pct']}}%</td>
+        <td>{{stats['dbf']}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+<br>
+<h4>MiLR Stats</h4>
+{% if milr_batting_stats %}
+<table align="center" class="table table-striped table-hover">
+    <tr>
+        <th>Season</th>
+        <th>PAs</th>
+        <th>AVG</th>
+        <th>OBP</th>
+        <th>SLG</th>
+        <th>OPS</th>
+        <th>Hits</th>
+        <th>HRs</th>
+        <th>Runs</th>
+        <th>RBIs</th>
+        <th>Steals</th>
+        <th>Attempts</th>
+        <th>DPA</th>
+    </tr>
+    {% for stats in milr_batting_stats %}
+    <tr>
+        <td>{{stats['season']}}</td>
+        <td>{{stats['pa']}}</td>
+        <td>{{stats['avg']}}</td>
+        <td>{{stats['obp']}}</td>
+        <td>{{stats['slg']}}</td>
+        <td>{{stats['ops']}}</td>
+        <td>{{stats['hits']}}</td>
+        <td>{{stats['hrs']}}</td>
+        <td>{{stats['runs']}}</td>
+        <td>{{stats['rbi']}}</td>
+        <td>{{stats['sb']}}</td>
+        <td>{{stats['sa']}}</td>
+        <td>{{stats['dpa']}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+<br>
+{% if milr_pitching_stats %}
+<table align="center" class="table table-striped table-hover">
+    <tr>
+        <th>Season</th>
+        <th>IP</th>
+        <th>ERA</th>
+        <th>WHIP</th>
+        <th>Hits</th>
+        <th>Runs</th>
+        <th>FOs</th>
+        <th>Ks</th>
+        <th>DP</th>
+        <th>DP %</th>
+        <th>CS</th>
+        <th>CS %</th>
+        <th>DBF</th>
+    </tr>
+    {% for stats in milr_pitching_stats %}
+    <tr>
+        <td>{{stats['season']}}</td>
+        <td>{{stats['ip']}}</td>
+        <td>{{stats['era']}}</td>
+        <td>{{stats['whip']}}</td>
+        <td>{{stats['hits']}}</td>
+        <td>{{stats['runs']}}</td>
+        <td>{{stats['flyouts']}}</td>
+        <td>{{stats['strikeouts']}}</td>
+        <td>{{stats['dp']}}</td>
+        <td>{{stats['dp_pct']}}%</td>
+        <td>{{stats['cs']}}</td>
+        <td>{{stats['cs_pct']}}%</td>
+        <td>{{stats['dbf']}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+<br>
+<h3>All Plate Appearances</h3>
+<hr>
+<div id="accordian">
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h4 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    MLR Batting
+                </button>
+                <a href="/plateappearances/batting/mlr/{{player.playerID}}" class="badge badge-secondary float-right" style="color: #FFFFFF">JSON</a>
+            </h4>
+        </div>
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body" aria-expanded="false">
+                <table align="center" class="table table-striped table-hover">
+                    <tr>
+                        <th>Game</th>
+                        <th>Inning</th>
+                        <th>OBC</th>
+                        <th>Pitcher</th>
+                        <th>Pitch</th>
+                        <th>Swing</th>
+                        <th>Diff</th>
+                        <th>Result</th>
+                        <th>RBI</th>
+                        <th>Run</th>
+                        <th>bWPA</th>
+                    </tr>
+                    {% for ab in mlr_batting %}
+                    <tr>
+                        <td>{{ab.season}}.{{ab.session}} vs {{ab.pitcherTeam}}</td>
+                        <td>{{ab.inning}} {{ab.outs}} out(s)</td>
+                        <td>{{ab.obc}}</td>
+                        <td>{{ab.pitcherName}}</td>
+                        <td>{{ab.pitch}}</td>
+                        <td>{{ab.swing}}</td>
+                        <td>{{ab.diff}}</td>
+                        <td>{{ab.exactResult}}</td>
+                        <td>{{ab.rbi}}</td>
+                        <td>{{ab.run}}</td>
+                        <td>{{ab.batterWPA}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header" id="headingTwo">
+            <h4 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseOne">
+                    MLR Pitching
+                </button>
+                <a href="/plateappearances/pitching/mlr/{{player.playerID}}" class="badge badge-secondary float-right" style="color: #FFFFFF">JSON</a>
+            </h4>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body">
+                <table align="center" class="table table-striped table-hover">
+                    <tr>
+                        <th>Game</th>
+                        <th>Inning</th>
+                        <th>OBC</th>
+                        <th>Batter</th>
+                        <th>Pitch</th>
+                        <th>Swing</th>
+                        <th>Diff</th>
+                        <th>Result</th>
+                        <th>RBI</th>
+                        <th>bWPA</th>
+                    </tr>
+                    {% for ab in mlr_pitching %}
+                    <tr>
+                        <td>{{ab.season}}.{{ab.session}} vs {{ab.hitterTeam}}</td>
+                        <td>{{ab.inning}} {{ab.outs}} out(s)</td>
+                        <td>{{ab.obc}}</td>
+                        <td>{{ab.hitterName}}</td>
+                        <td>{{ab.pitch}}</td>
+                        <td>{{ab.swing}}</td>
+                        <td>{{ab.diff}}</td>
+                        <td>{{ab.exactResult}}</td>
+                        <td>{{ab.rbi}}</td>
+                        <td>{{ab.pitcherWPA}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header" id="headingThree">
+            <h4 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseOne">
+                    MiLR Batting
+                </button>
+                <a href="/plateappearances/batting/milr/{{player.playerID}}" class="badge badge-secondary float-right" style="color: #FFFFFF">JSON</a>
+            </h4>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+            <div class="card-body">
+                <table align="center" class="table table-striped table-hover">
+                    <tr>
+                        <th>Game</th>
+                        <th>Inning</th>
+                        <th>OBC</th>
+                        <th>Pitcher</th>
+                        <th>Pitch</th>
+                        <th>Swing</th>
+                        <th>Diff</th>
+                        <th>Result</th>
+                        <th>RBI</th>
+                        <th>Run</th>
+                        <th>bWPA</th>
+                    </tr>
+                    {% for ab in milr_batting %}
+                    <tr>
+                        <td>{{ab.season}}.{{ab.session}} vs {{ab.pitcherTeam}}</td>
+                        <td>{{ab.inning}} {{ab.outs}} out(s)</td>
+                        <td>{{ab.obc}}</td>
+                        <td>{{ab.pitcherName}}</td>
+                        <td>{{ab.pitch}}</td>
+                        <td>{{ab.swing}}</td>
+                        <td>{{ab.diff}}</td>
+                        <td>{{ab.exactResult}}</td>
+                        <td>{{ab.rbi}}</td>
+                        <td>{{ab.run}}</td>
+                        <td>{{ab.batterWPA}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header" id="headingFour">
+            <h4 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseOne">
+                    MiLR Pitching
+                </button>
+                <a href="/plateappearances/pitching/milr/{{player.playerID}}" class="badge badge-secondary float-right" style="color: #FFFFFF">JSON</a>
+            </h4>
+        </div>
+        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+            <div class="card-body">
+                <table align="center" class="table table-striped table-hover">
+                    <tr>
+                        <th>Game</th>
+                        <th>Inning</th>
+                        <th>OBC</th>
+                        <th>Batter</th>
+                        <th>Pitch</th>
+                        <th>Swing</th>
+                        <th>Diff</th>
+                        <th>Result</th>
+                        <th>RBI</th>
+                        <th>bWPA</th>
+                    </tr>
+                    {% for ab in milr_pitching %}
+                    <tr>
+                        <td>{{ab.season}}.{{ab.session}} vs {{ab.hitterTeam}}</td>
+                        <td>{{ab.inning}} {{ab.outs}} out(s)</td>
+                        <td>{{ab.obc}}</td>
+                        <td>{{ab.hitterName}}</td>
+                        <td>{{ab.pitch}}</td>
+                        <td>{{ab.swing}}</td>
+                        <td>{{ab.diff}}</td>
+                        <td>{{ab.exactResult}}</td>
+                        <td>{{ab.rbi}}</td>
+                        <td>{{ab.pitcherWPA}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

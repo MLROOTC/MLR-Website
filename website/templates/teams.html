@@ -1,0 +1,301 @@
+{% extends "base.html" %}
+{% block title %}Teams{% endblock %}
+
+{% block content %}
+<br>
+<h1>Teams</h1>
+<hr>
+
+<ul id="calc-tab-selector" class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#mlr">MLR</a>
+    </li>
+    <li class="nav-item ml-2">
+        <a class="nav-link" data-toggle="tab" href="#milr">MiLR</a>
+    </li>
+</ul>
+<div id="calc-tab-content" class="tab-content">
+    <div id="mlr" class="tab-pane fade show active">
+        <div class="accordion" id="mlr-accordian">
+                <div class="card">
+                    <div class="card-header" id="alEastHeader">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#alEast" aria-expanded="true" aria-controls="alEast" style="">
+                                AL East <hr>
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="alEast" class="collapse show" aria-labelledby="alEastHeader" data-parent="#accordion">
+                        <div class="card-body" aria-expanded="true">
+                           <div class="cards" style="" >
+                                {% for team in ale %}
+                                    <div class="card" style="background-color: #FFFFFF; max-width: 300px; box-shadow: 0 4px 8px 0 #69696940; border: 1px solid #69696940;" >
+                                        <br>
+                                        <a href="/team/{{team.abb}}">
+                                            <img class="card-img-top p-3" src={{team.logo_url}} alt={{team.abb}} style="object-fit: contain" height="100rem" border="None">
+                                            <div class="container">
+                                                <h4 align="center" style="display: flex; justify-content: center; align-items: center; height: 70px;font-size: large"><b>{{team.name}}</b></h4>
+                                                <p style="height: 90px; text-align:center"><b>GM</b><br>{{team.gm}}<br>{{team.cogm}}<p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="alCentralHeader">
+                        <h4 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#alCentral" aria-expanded="true" aria-controls="alCentral">
+                                AL Central <hr>
+                            </button>
+                        </h4>
+                    </div>
+                    <div id="alCentral" class="collapse show" aria-labelledby="alCentralHeader" data-parent="#accordion">
+                        <div class="card-body" aria-expanded="true">
+                           <div class="cards" style="display: grid; grid-gap: 1rem;" >
+                                {% for team in alc %}
+                                    <div class="card" style="background-color: #FFFFFF; max-width: 300px; box-shadow: 0 4px 8px 0 #69696940; border: 1px solid #69696940;" >
+                                        <br>
+                                        <a href="/team/{{team.abb}}">
+                                            <img class="card-img-top p-3" src={{team.logo_url}} alt={{team.abb}} style="object-fit: contain" height="100rem" border="None">
+                                            <div class="container">
+                                                <h4 align="center" style="display: flex; justify-content: center; align-items: center; height: 70px;font-size: large"><b>{{team.name}}</b></h4>
+                                                <p style="height: 90px; text-align:center"><b>GM</b><br>{{team.gm}}<br>{{team.cogm}}<p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="alWestHeader">
+                        <h4 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#alWest" aria-expanded="true" aria-controls="alWest">
+                                AL West <hr>
+                            </button>
+                        </h4>
+                    </div>
+                    <div id="alWest" class="collapse show" aria-labelledby="alWestHeader" data-parent="#accordion">
+                        <div class="card-body" aria-expanded="true">
+                           <div class="cards" style="display: grid; grid-gap: 1rem;" >
+                                {% for team in alw %}
+                                    <div class="card" style="background-color: #FFFFFF; max-width: 300px; box-shadow: 0 4px 8px 0 #69696940; border: 1px solid #69696940;" >
+                                        <br>
+                                        <a href="/team/{{team.abb}}">
+                                            <img class="card-img-top p-3" src={{team.logo_url}} alt={{team.abb}} style="object-fit: contain" height="100rem" border="None">
+                                            <div class="container">
+                                                <h4 align="center" style="display: flex; justify-content: center; align-items: center; height: 70px;font-size: large"><b>{{team.name}}</b></h4>
+                                                <p style="height: 90px; text-align:center"><b>GM</b><br>{{team.gm}}<br>{{team.cogm}}<p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="nlEastHeader">
+                        <h4 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#nlEast" aria-expanded="true" aria-controls="nlEast">
+                                NL East <hr>
+                            </button>
+                        </h4>
+                    </div>
+                    <div id="nlEast" class="collapse show" aria-labelledby="nlEastHeader" data-parent="#accordion">
+                        <div class="card-body" aria-expanded="true">
+                           <div class="cards" style="display: grid; grid-gap: 1rem;" >
+                                {% for team in nle %}
+                                    <div class="card" style="background-color: #FFFFFF; max-width: 300px; box-shadow: 0 4px 8px 0 #69696940; border: 1px solid #69696940;" >
+                                        <br>
+                                        <a href="/team/{{team.abb}}">
+                                            <img class="card-img-top p-3" src={{team.logo_url}} alt={{team.abb}} style="object-fit: contain" height="100rem" border="None">
+                                            <div class="container">
+                                                <h4 align="center" style="display: flex; justify-content: center; align-items: center; height: 70px;font-size: large"><b>{{team.name}}</b></h4>
+                                                <p style="height: 90px; text-align:center"><b>GM</b><br>{{team.gm}}<br>{{team.cogm}}<p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="nlCentralHeader">
+                        <h4 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#nlCentral" aria-expanded="true" aria-controls="nlCentral">
+                                NL Central <hr>
+                            </button>
+                        </h4>
+                    </div>
+                    <div id="nlCentral" class="collapse show" aria-labelledby="nlCentralHeader" data-parent="#accordion">
+                        <div class="card-body" aria-expanded="true">
+                           <div class="cards" style="display: grid; grid-gap: 1rem;" >
+                                {% for team in nlc %}
+                                    <div class="card" style="background-color: #FFFFFF; max-width: 300px; box-shadow: 0 4px 8px 0 #69696940; border: 1px solid #69696940;" >
+                                        <br>
+                                        <a href="/team/{{team.abb}}">
+                                            <img class="card-img-top p-3" src={{team.logo_url}} alt={{team.abb}} style="object-fit: contain" height="100rem" border="None">
+                                            <div class="container">
+                                                <h4 align="center" style="display: flex; justify-content: center; align-items: center; height: 70px;font-size: large"><b>{{team.name}}</b></h4>
+                                                <p style="height: 90px; text-align:center"><b>GM</b><br>{{team.gm}}<br>{{team.cogm}}<p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="nlWestHeader">
+                        <h4 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#nlWest" aria-expanded="true" aria-controls="nlWest">
+                                NL West <hr>
+                            </button>
+                        </h4>
+                    </div>
+                    <div id="nlWest" class="collapse show" aria-labelledby="nlWestHeader" data-parent="#accordion">
+                        <div class="card-body" aria-expanded="true">
+                           <div class="cards" style="display: grid; grid-gap: 1rem;" >
+                                {% for team in nlw %}
+                                    <div class="card" style="background-color: #FFFFFF; max-width: 300px; box-shadow: 0 4px 8px 0 #69696940; border: 1px solid #69696940;" >
+                                        <br>
+                                        <a href="/team/{{team.abb}}">
+                                            <img class="card-img-top p-3" src={{team.logo_url}} alt={{team.abb}} style="object-fit: contain" height="100rem" border="None">
+                                            <div class="container">
+                                                <h4 align="center" style="display: flex; justify-content: center; align-items: center; height: 70px;font-size: large"><b>{{team.name}}</b></h4>
+                                                <p style="height: 90px; text-align:center"><b>GM</b><br>{{team.gm}}<br>{{team.cogm}}<p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <div id="milr" class="tab-pane fade">
+        <div class="accordion" id="milr-accordian">
+            <div class="card">
+                <div class="card-header" id="indHeader">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#ind" aria-expanded="true" aria-controls="ind" style="">
+                            Independence League <hr>
+                        </button>
+                    </h2>
+                </div>
+                <div id="ind" class="collapse show" aria-labelledby="indHeader" data-parent="#accordion">
+                    <div class="card-body" aria-expanded="true">
+                       <div class="cards" style="display: grid; grid-gap: 1rem;" >
+                            {% for team in ind %}
+                                <div class="card" style="background-color: #FFFFFF; max-width: 300px; box-shadow: 0 4px 8px 0 #69696940; border: 1px solid #69696940;" >
+                                    <br>
+                                    <a href="/team/{{team.abb}}">
+                                        <img class="card-img-top p-3" src={{team.logo_url}} alt={{team.abb}} style="object-fit: contain" height="100rem" border="None">
+                                        <div class="container">
+                                            <h4 align="center" style="display: flex; justify-content: center; align-items: center; height: 70px;font-size: large"><b>{{team.name}}</b></h4>
+                                            <p style="height: 90px; text-align:center"><b>GM</b><br>{{team.gm}}<br>{{team.cogm}}<p>
+                                        </div>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="diaHeader">
+                    <h4 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#dia" aria-expanded="true" aria-controls="dia">
+                            Diamond League <hr>
+                        </button>
+                    </h4>
+                </div>
+                <div id="dia" class="collapse show" aria-labelledby="diaHeader" data-parent="#accordion">
+                    <div class="card-body" aria-expanded="true">
+                       <div class="cards" style="display: grid; grid-gap: 1rem;" >
+                            {% for team in dia %}
+                                <div class="card" style="background-color: #FFFFFF; max-width: 300px; box-shadow: 0 4px 8px 0 #69696940; border: 1px solid #69696940;" >
+                                    <br>
+                                    <a href="/team/{{team.abb}}">
+                                        <img class="card-img-top p-3" src={{team.logo_url}} alt={{team.abb}} style="object-fit: contain" height="100rem" border="None">
+                                        <div class="container">
+                                            <h4 align="center" style="display: flex; justify-content: center; align-items: center; height: 70px;font-size: large"><b>{{team.name}}</b></h4>
+                                            <p style="height: 90px; text-align:center"><b>GM</b><br>{{team.gm}}<br>{{team.cogm}}<p>
+                                        </div>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="twiHeader">
+                    <h4 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#twi" aria-expanded="true" aria-controls="twi">
+                            Twisted League <hr>
+                        </button>
+                    </h4>
+                </div>
+                <div id="twi" class="collapse show" aria-labelledby="twiHeader" data-parent="#accordion">
+                    <div class="card-body" aria-expanded="true">
+                       <div class="cards" style="display: grid; grid-gap: 1rem;" >
+                            {% for team in twi %}
+                                <div class="card" style="background-color: #FFFFFF; max-width: 300px; box-shadow: 0 4px 8px 0 #69696940; border: 1px solid #69696940;" >
+                                    <br>
+                                    <a href="/team/{{team.abb}}">
+                                        <img class="card-img-top p-3" src={{team.logo_url}} alt={{team.abb}} style="object-fit: contain" height="100rem" border="None">
+                                        <div class="container">
+                                            <h4 align="center" style="display: flex; justify-content: center; align-items: center; height: 70px;font-size: large"><b>{{team.name}}</b></h4>
+                                            <p style="height: 90px; text-align:center"><b>GM</b><br>{{team.gm}}<br>{{team.cogm}}<p>
+                                        </div>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="wldHeader">
+                    <h4 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#wld" aria-expanded="true" aria-controls="wld">
+                            Wildflower League <hr>
+                        </button>
+                    </h4>
+                </div>
+                <div id="wld" class="collapse show" aria-labelledby="nlEastHeader" data-parent="#accordion">
+                    <div class="card-body" aria-expanded="true">
+                       <div class="cards" style="display: grid; grid-gap: 1rem;" >
+                            {% for team in wld %}
+                                <div class="card" style="background-color: #FFFFFF; max-width: 300px; box-shadow: 0 4px 8px 0 #69696940; border: 1px solid #69696940;" >
+                                    <br>
+                                    <a href="/team/{{team.abb}}">
+                                        <img class="card-img-top p-3" src={{team.logo_url}} alt={{team.abb}} style="object-fit: contain" height="100rem" border="None">
+                                        <div class="container">
+                                            <h4 align="center" style="display: flex; justify-content: center; align-items: center; height: 70px;font-size: large"><b>{{team.name}}</b></h4>
+                                            <p style="height: 90px; text-align:center"><b>GM</b><br>{{team.gm}}<br>{{team.cogm}}<p>
+                                        </div>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

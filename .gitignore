@@ -1,0 +1,16 @@
+
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/inspectionProfiles/Project_Default.xml
+.idea/misc.xml
+.idea/MLR-Website.iml
+.idea/modules.xml
+.idea/vcs.xml
+venv/pyvenv.cfg
+website/__pycache__/__init__.cpython-37.pyc
+.idea/workspace.xml
+creds.ini
+website/__pycache__/calculator.cpython-37.pyc
+website/__pycache__/models.cpython-37.pyc
+website/__pycache__/rest_api.cpython-37.pyc
+website/__pycache__/views.cpython-37.pyc
+.idea/.name

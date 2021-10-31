@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+{% block title %}Calculator{% endblock %}
+
+{% block content %}
+
+
+<br>
+<h1>Calculator</h1>
+<hr>
+
+<ul id="calc-tab-selector" class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link {{player_tab_button_active}}" data-toggle="tab" href="#player">Player</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{type_tab_button_active}}" data-toggle="tab" href="#type">Type</a>
+    </li>
+</ul>
+
+<form method="post">
+    <div id="calc-tab-content" class="tab-content">
+        <div id="player" class="tab-pane fade{{player_tab_active}}">
+            <br>
+            <div class="row">
+                <div class="col">
+                    <label for="pitcher-name">Pitcher</label>
+                    <select id="pitcher-name" class="custom-select" name="pitcher_name">
+                        <option value="{{pitcher_placeholder_value}}" selected>{{pitcher_placeholder_name}}</option>
+                        {% for player in player_list %}
+                        <option value="{{player.playerID}}">{{player.playerName}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="batter-name">Batter</label>
+                    <select id="batter-name" class="custom-select" name="batter_name">
+                        <option value="{{batter_placeholder_value}}" selected>{{batter_placeholder_name}}</option>
+                        {% for player in player_list %}
+                        <option value="{{player.playerID}}">{{player.playerName}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div id="type" class="tab-pane fade{{type_tab_active}}">
+            <br>
+            <div class="row">
+                <div class="col">
+                    <label for="pitcher-type">Pitching Type</label>
+                    <select id="pitcher-type" class="custom-select" name="pitcher_type">
+                        <option value="{{pitching_type_placeholder_value}}" selected>{{pitching_type_placeholder_name}}</option>
+                        {% for type in pitching_types %}
+                        <option value="{{type.type}}">{{type.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="batter-type">Batting Type</label>
+                    <select id="batter-type" class="custom-select" name="batter_type">
+                        <option value="{{batting_type_placeholder_value}}" selected>{{batting_type_placeholder_name}}</option>
+                        {% for type in batting_types %}
+                        <option value="{{type.type}}">{{type.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="hand_bonus">Hand Bonus</label>
+                    <select id="hand_bonus" class="custom-select" name="hand_bonus">
+                        <option value="">None</option>
+                        {% for type in hand_bonus_list %}
+                        <option value="{{type.type}}">{{type.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col">
+                <label for="park-name">Park</label>
+                <select id="park-name" class="custom-select" name="park_name">
+                    <option value="{{park_placeholder_value}}" selected>{{park_placeholder_name}}</option>
+                    {% for park in park_list %}
+                    <option value="{{park.team}}">{{park.team}} - {{park.parkName}} ({{park.rangeHR}}/{{park.range3B}}/{{park.range2B}}/{{park.range1B}}/{{park.rangeBB}}/)</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col">
+                <label for="infield_in">Infield In</label>
+                <select id="infield_in" class="custom-select" name="infield_in">
+                    <option value="false">No</option>
+                    <option value="true">Yes</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <br>
+                <div class="form-group">
+                    <label for="pitchInput">Pitch</label>
+                    <input type="pitch" class="form-control" id="pitchInput" name="pitch_input" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="swingInput">Swing</label>
+                    <input type="swing" class="form-control" id="swingInput" name="swing_input" placeholder="">
+                </div>
+            </div>
+            <div class="col">
+                <br>
+                <div class="form-group">
+                    <label for="result_string">Result</label>
+                    <textarea readonly class="form-control" id="result_string" rows="3" placeholder="{{result_string}}"></textarea>
+                </div>
+                <br>
+                <input type="submit" class="btn btn-primary" value="Submit" style="float: right">
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <table align="center" class="table table-striped table-hover">
+                <tr align="center">
+                    <th style="width:20%;"></th>
+                    <th>HR</th>
+                    <th>3B</th>
+                    <th>2B</th>
+                    <th>1B</th>
+                    <th>BB</th>
+                    <th>FO</th>
+                    <th>K</th>
+                    <th>PO</th>
+                    <th>RGO</th>
+                    <th>LGO</th>
+                </tr>
+                <tr>
+                    <td><b>Batting Type</b> {{batting_type}}</td>
+                    {% for range in batting_ranges %}
+                    <td align="center">{{range}}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td><b>Pitching Type</b> {{pitching_type}}</td>
+                    {% for range in pitching_ranges %}
+                    <td align="center">{{range}}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td><b>Hand Bonus</b> {{hand_bonus}}</td>
+                    {% for range in pitching_bonus_ranges %}
+                    <td align="center">{{range}}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td><b>Park</b> {{park_name}}</td>
+                    {% for range in park_factor_ranges %}
+                    <td align="center">{{range}}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td><b>Infield In</b></td>
+                    {% for range in infield_in_ranges %}
+                    <td align="center">{{range}}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td><b>Total</b></td>
+                    {% for range in total_ranges %}
+                    <td align="center">{{range}}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td><b>Ranges</b></td>
+                    {% for range in stacked_ranges %}
+                    <td align="center"><b>{{range}}</b></td>
+                    {% endfor %}
+                </tr>
+            </table>
+        </div>
+    </div>
+</form>
+
+{% endblock %}
