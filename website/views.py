@@ -7,6 +7,7 @@ views = Blueprint('views', __name__)
 
 @views.route('/calculator', methods=["GET", "POST"])
 def calculator():
+    flash('Note - this website is currently in beta. We will be accepting bug reports and user feedback at a later date.', category='error')
     player_list = Player.query.order_by(Player.playerName.asc()).all()
     batting_types = BattingTypes.query.order_by(BattingTypes.name.asc()).all()
     pitching_types = PitchingTypes.query.order_by(PitchingTypes.name.asc()).all()
@@ -178,11 +179,13 @@ def calculator():
 
 @views.route('/games')
 def games():
+    flash('Note - this website is currently in beta. We will be accepting bug reports and user feedback at a later date.', category='error')
     return render_template('games.html')
 
 
 @views.route('/')
 def home():
+    flash('Note - this website is currently in beta. We will be accepting bug reports and user feedback at a later date.', category='error')
     mlr_season = SeasonData.query.filter_by(league='mlr').first()
     game_data = GameData.query.filter_by(league='mlr', season=mlr_season.season, session=mlr_season.session).all()
     return render_template('home.html', games=game_data)
@@ -190,6 +193,7 @@ def home():
 
 @views.route('/player/<playerID>')
 def player(playerID):
+    flash('Note - this website is currently in beta. We will be accepting bug reports and user feedback at a later date.', category='error')
     session = PlateAppearance.query.session
     season = SeasonData.query.filter_by(league='mlr').first()
     player_data = Player.query.filter_by(playerID=playerID).first()
@@ -268,12 +272,14 @@ def player(playerID):
 
 @views.route('/players')
 def players():
+    flash('Note - this website is currently in beta. We will be accepting bug reports and user feedback at a later date.', category='error')
     player_data = Player.query.order_by(Player.playerID.asc()).all()
     return render_template('players.html', players=player_data)
 
 
 @views.route('/team/<team_abb>')
 def team(team_abb):
+    flash('Note - this website is currently in beta. We will be accepting bug reports and user feedback at a later date.', category='error')
     team_data = TeamData.query.filter_by(abb=team_abb).first()
     park_data = Parks.query.filter_by(team=team_abb).first()
     if team_data.league == 'mlr':
@@ -304,6 +310,7 @@ def team(team_abb):
 
 @views.route('/teamcalc', methods=["GET", "POST"])
 def team_calc():
+    flash('Note - this website is currently in beta. We will be accepting bug reports and user feedback at a later date.', category='error')
     player_list = Player.query.order_by(Player.playerName.asc()).all()
     team_list = TeamData.query.filter_by(league='mlr').all()
     park_list = Parks.query.all()
@@ -371,6 +378,7 @@ def team_calc():
 
 @views.route('/teams')
 def teams():
+    flash('Note - this website is currently in beta. We will be accepting bug reports and user feedback at a later date.', category='error')
     ale = TeamData.query.filter_by(league='mlr', division='ALE').order_by(TeamData.name.asc()).all()
     alc = TeamData.query.filter_by(league='mlr', division='ALC').order_by(TeamData.name.asc()).all()
     alw = TeamData.query.filter_by(league='mlr', division='ALW').order_by(TeamData.name.asc()).all()
