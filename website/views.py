@@ -393,6 +393,6 @@ def teams():
     return render_template('teams.html', ale=ale, alc=alc, alw=alw, nle=nle, nlc=nlc, nlw=nlw, ind=ind, dia=dia, twi=twi, wld=wld)
 
 
-@views.route('api')
+@views.route('/api')
 def api():
     return render_template('api.html')
