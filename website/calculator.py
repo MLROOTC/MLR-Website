@@ -126,10 +126,10 @@ def calculate_hitting_stats(plate_appearances):
             sa += 1
         if result not in not_pa_types:
             pas += 1
+            if pa.diff:
+                total_diff += pa.diff
         if result not in not_ab_types:
             at_bats += 1
-        if pa.diff:
-            total_diff += pa.diff
         if pa.rbi:
             rbi += pa.rbi
         if pa.run:
@@ -215,10 +215,10 @@ def calculate_pitching_stats(plate_appearances):
             strikeouts += 1
         if result not in not_pa_types:
             bf += 1
+            if pa.diff:
+                total_diff += pa.diff
         if pa.run:
             total_runs += 1
-        if pa.diff:
-            total_diff += pa.diff
         season = pa.season
     ip_string = '%s.%s' % (math.floor(total_outs / 3), total_outs % 3)
     ip_float = total_outs / 3
