@@ -391,3 +391,8 @@ def teams():
     wld = TeamData.query.filter_by(league='milr', division='WLD').order_by(TeamData.name.asc()).all()
 
     return render_template('teams.html', ale=ale, alc=alc, alw=alw, nle=nle, nlc=nlc, nlw=nlw, ind=ind, dia=dia, twi=twi, wld=wld)
+
+
+@views.route('api')
+def api():
+    return render_template('api.html')

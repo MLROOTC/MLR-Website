@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}API{% endblock %}
+
+{% block content %}
+<br>
+<h1>Endpoints</h1>
+<hr>
+<ul>
+  <li>Players</li>
+  <ul>
+    <li>/api/players</li>
+    <li>/api/players/[playerID]</li>
+    <li>/api/players/[playername]</li>
+  </ul>
+  <li>Plate Appearances</li>
+  <ul>
+    <li>/api/plateappearances</li>
+    <li>/api/plateappearances/[league]</li>
+    <li>/api/plateappearances/pitching/[league]/[playerid]</li>
+    <li>/api/plateappearances/batting/[league]/[playerid]</li>
+  </ul>
+</ul>
+{% endblock %}
