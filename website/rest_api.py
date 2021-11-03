@@ -105,5 +105,5 @@ def add_resources(api):
     api.add_resource(AllPlateAppearances, '/api/plateappearances')
     api.add_resource(PlateAppearnacesByLeague, '/api/plateappearances/<string:league>')
     api.add_resource(AllPlayers, '/api/players')
-    api.add_resource(PlayerID, '/api/players/<int:player_id>')
-    api.add_resource(PlayerName, '/api/players/<string:player_name>')
+    api.add_resource(PlayerID, '/api/players/id/<int:playerID>')
+    api.add_resource(PlayerName, '/api/players/name/<string:player_name>')
